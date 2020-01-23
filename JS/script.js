@@ -21,4 +21,10 @@ Particle.prototype.draw = function(){
     ctx.fillStyle = this.color;
     ctx.fill();
 }
-const particle1 = new Particle(10,10,1,1,20, 'white');
+// add update method to particle prototype
+Particle.prototype.update = function(){
+    if (this.x + this.siez > canvas.width || this.x - this.size < 0) {
+        this.directionXv = -this.directionX;
+    }
+    
+}
