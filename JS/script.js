@@ -6,8 +6,8 @@ ctx.canvas.height = window.innerHeight;
 let particleArray;
 
 // create constructor function
-function Particle(x,y, directionX, directionY, size, color){
-    this.x = x,
+function Particle(x, y, directionX, directionY, size, color){
+    this.x = x;
     this.y = y;
     this.directionX = directionX;
     this.directionY = directionY;
@@ -26,7 +26,7 @@ Particle.prototype.update = function(){
     if (this.x + this.size > canvas.width || this.x - this.size < 0) {
         this.directionX = -this.directionX;
     }
-    if (this.y + this.size > canvas.width || this.y - this.size < 0) {
+    if (this.y + this.size > canvas.height || this.y - this.size < 0) {
         this.directionY = -this.directionY;
     }
     this.x += this.directionX;
@@ -41,8 +41,8 @@ function init() {
         let size = Math.random() * 20;
         let x = Math.random() * (innerWidth - size * 2);
         let y = Math.random() * (innerHeight - size * 2);
-        let directionX = (Math.random() * .4) - .2;
-        let directionY = (Math.random() * .4) - .2;
+        let directionX = (Math.random() * .9) - .2;
+        let directionY = (Math.random() * .1) - .2;
         let color = 'white';
 
         particleArray.push(new Particle(x, y, directionX, directionY, size, color));
@@ -51,9 +51,9 @@ function init() {
 //  animation loop
 function animate(){
     requestAnimationFrame(animate);
-    ctx.clearReact(0,0, innerWidth, innerHeight);
+    ctx.clearRect(0,0, innerWidth, innerHeight);
 
-    for (let i=0; i<particpleArray.length; i++) {
+    for (let i=0; i<particleArray.length; i++) {
         particleArray[i].update();
     }
 }
